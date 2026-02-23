@@ -1,0 +1,66 @@
+@startuml Cas_Utilisation_InfoProd_v2
+title Diagramme de cas d'utilisation - Système InfoProd
+
+left to right direction
+
+actor "Public" as Public
+actor "Vie scolaire" as VieScolaire
+actor "Administrateur" as Admin
+
+rectangle "Système InfoProd" {
+
+  ' --- Cas côté Public ---
+  usecase "Regarder les\ninformations" as UC_ConsulterInfos
+  usecase "Afficher les\ninformations sur les écrans" as UC_AfficherInfos
+  usecase "Afficher les\ninformations mesurées" as UC_AffMesures
+
+  ' --- Chaîne mesure / enregistrement énergie ---
+  usecase "Mesurer la production\nd'énergie" as UC_MesurerProd
+  usecase "Enregistrer les mesures\nen base de données" as UC_EnregistrerMesures
+
+  ' --- Cas administratifs (Vie scolaire) ---
+  usecase "Mettre à jour les\ninformations" as UC_MAJInfos
+  usecase "Créer une alerte\nadministrative" as UC_Alerte
+
+  ' --- Cas techniques Admin ---
+  usecase "S'authentifier" as UC_Auth
+  usecase "Gérer les gabarits" as UC_GererGabarits
+  usecase "Gérer la détection\nde présence" as UC_GererPresence
+  usecase "Créer des gabarits" as UC_CreerGabarits
+  usecase "Modifier les gabarits" as UC_ModifierGabarits
+  usecase "Supprimer les gabarits" as UC_SupprimerGabarits
+}
+
+' --- Liens acteurs / cas d'utilisation ---
+Public --> UC_ConsulterInfos
+UC_ConsulterInfos --> UC_AfficherInfos
+
+VieScolaire --> UC_MAJInfos
+VieScolaire --> UC_Alerte
+
+Admin --> UC_Auth
+Admin --> UC_GererGabarits
+Admin --> UC_GererPresence
+
+' --- Relations include / extend ---
+
+' Affichage infos générales / mesurées
+UC_AfficherInfos .> UC_AffMesures : <<extend>>
+
+' Chaîne de mesure énergie
+UC_AffMesures .> UC_EnregistrerMesures : <<include>>
+UC_EnregistrerMesures .> UC_MesurerProd : <<include>>
+
+' Cas vie scolaire : nécessite auth
+UC_MAJInfos .> UC_Auth : <<include>>
+UC_Alerte .> UC_Auth : <<include>>
+
+' Gestion gabarits : opérations détaillées
+UC_GererGabarits .> UC_CreerGabarits : <<extend>>
+UC_GererGabarits .> UC_ModifierGabarits : <<extend>>
+UC_GererGabarits .> UC_SupprimerGabarits : <<extend>>
+
+' Gestion détection présence : nécessite auth
+UC_GererPresence .> UC_Auth : <<include>>
+
+@enduml
