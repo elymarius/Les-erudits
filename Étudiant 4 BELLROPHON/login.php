@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connexion - Bryhann.B</title>
+  <title>Connexion - Infoprod</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -194,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         onmouseover="this.style.background='rgba(66,165,245,.25)'"
         onmouseout="this.style.background='rgba(66,165,245,.12)'">🌐 EN</button>
     </div>
-    <div class="brand">Bryhann.B</div>
+    <div class="brand">Infoprod</div>
     <h2 data-i18n="title">Connexion</h2>
 
     <?php if (!empty($error)) : ?>
