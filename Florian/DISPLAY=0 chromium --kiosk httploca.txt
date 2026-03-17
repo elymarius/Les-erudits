@@ -1,0 +1,1 @@
+DISPLAY=:0 chromium --kiosk "http://localhost/display.php?screen=vie_scolaire_cse"
