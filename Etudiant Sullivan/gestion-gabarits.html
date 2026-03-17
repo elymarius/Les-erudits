@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gestion des gabarits</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -31,10 +34,6 @@
     .header h1 {
       font-size: 2rem;
       margin-bottom: 5px;
-    }
-
-    .header p {
-      color: #b8c4d9;
     }
 
     .btn-add {
@@ -256,15 +255,6 @@
       color: white;
     }
 
-    .btn-energy {
-      background: #f5b942;
-      color: #1b1300;
-    }
-
-    .hidden {
-      display: none;
-    }
-
     .modal {
       position: fixed;
       inset: 0;
@@ -326,16 +316,23 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 16px;
-      align-items: center;
+      align-items: start;
       font-size: 1.8rem;
       font-weight: 600;
       color: #111;
       margin-bottom: 14px;
     }
 
+    .topbar > div {
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .layout {
       display: grid;
-      grid-template-columns: 260px minmax(0, 1fr) 180px;
+      grid-template-columns: 260px minmax(0, 1fr) 220px;
       gap: 18px;
       min-height: 420px;
       align-items: stretch;
@@ -351,7 +348,6 @@
       font-size: 1.3rem;
       font-style: italic;
       font-weight: bold;
-      white-space: pre-line;
       min-width: 0;
       overflow: hidden;
     }
@@ -375,106 +371,19 @@
     }
 
     .zone3 {
-      background: #2cff20;
+      background: #16A34A;
       color: #000;
       min-height: 300px;
-      font-style: normal;
-      padding: 14px;
-      display: block;
+      padding: 0;
       min-width: 0;
       overflow: hidden;
-    }
-
-    .energy-dashboard {
-      width: 100%;
-      height: 100%;
-      min-height: 300px;
-      display: grid;
-      grid-template-rows: auto auto auto 1fr auto;
-      gap: 12px;
-      text-align: left;
-    }
-
-    .energy-title {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-
-    .energy-subtitle {
-      text-align: center;
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .energy-values {
-      display: grid;
-      gap: 8px;
-    }
-
-    .energy-item {
-      background: rgba(255,255,255,0.45);
-      border-radius: 10px;
-      padding: 8px 10px;
-    }
-
-    .energy-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .energy-bar {
-      width: 100%;
-      height: 14px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.18);
-      overflow: hidden;
-    }
-
-    .energy-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      transition: width 0.8s ease;
-    }
-
-    .fill-solaire {
-      background: linear-gradient(90deg, #f7b500, #ffe17a);
-    }
-
-    .fill-pv {
-      background: linear-gradient(90deg, #0088ff, #5cc0ff);
-    }
-
-    .fill-conso {
-      background: linear-gradient(90deg, #00b86b, #67e8a4);
-    }
-
-    .energy-analysis {
-      background: rgba(255,255,255,0.35);
-      border-radius: 10px;
-      padding: 10px;
-      display: grid;
-      gap: 6px;
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .energy-foot {
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 700;
+      border-radius: 6px;
     }
 
     .footer {
       margin-top: 18px;
       display: grid;
-      grid-template-columns: 260px 1fr 180px;
+      grid-template-columns: 260px 1fr 220px;
       gap: 10px;
       align-items: center;
     }
@@ -511,25 +420,6 @@
       height: 100%;
       min-height: 42px;
       border-radius: 4px;
-    }
-
-    .energy-panel {
-      margin-top: 16px;
-      background: #102746;
-      border: 1px solid #2f4f79;
-      border-radius: 10px;
-      padding: 14px;
-      color: white;
-    }
-
-    .energy-panel h3 {
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-
-    .energy-panel p {
-      color: #c7d7ee;
-      margin-bottom: 10px;
     }
 
     .edit-form {
@@ -577,6 +467,13 @@
       to { transform: translateX(-100%); }
     }
 
+    @media (max-width: 1100px) {
+      .topbar {
+        grid-template-columns: 1fr;
+        font-size: 1.2rem;
+      }
+    }
+
     @media (max-width: 900px) {
       .cards {
         grid-template-columns: 1fr;
@@ -584,11 +481,6 @@
 
       .screen {
         width: 100%;
-      }
-
-      .topbar {
-        grid-template-columns: 1fr;
-        font-size: 1.2rem;
       }
 
       .layout,
@@ -609,6 +501,151 @@
         grid-template-columns: 70px 1fr 50px;
       }
     }
+
+    /* Widget intégré */
+    .widget-zone3 {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      background: #16A34A;
+      color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow: hidden;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .w-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FDE047;
+      text-shadow: 0 0 8px rgba(253,224,71,0.4);
+      border-bottom: 2px solid rgba(253,224,71,0.35);
+      padding-bottom: 5px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .w-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #A7F3D0;
+      flex-shrink: 0;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+
+    .w-section {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: .65;
+      margin-top: 3px;
+      color: white;
+    }
+
+    .w-big {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .w-big .unit {
+      font-size: 13px;
+      font-weight: 400;
+      opacity: .65;
+      margin-left: 2px;
+    }
+
+    .w-gauge {
+      background: rgba(0,0,0,.2);
+      border-radius: 3px;
+      height: 4px;
+      overflow: hidden;
+      margin: 3px 0 4px;
+    }
+
+    .w-gauge-fill {
+      height: 4px;
+      border-radius: 3px;
+      transition: width 1s ease;
+    }
+
+    .fill-eol { background: #A7F3D0; }
+    .fill-pv  { background: #FDE68A; }
+
+    .w-sep {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.2);
+      margin: 2px 0;
+    }
+
+    .w-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      opacity: .88;
+      color: white;
+    }
+
+    .w-row .val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .w-co2 {
+      background: rgba(0,0,0,.18);
+      border-radius: 6px;
+      padding: 6px 8px;
+      text-align: center;
+      margin-top: 2px;
+      color: white;
+    }
+
+    .w-co2-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: .7;
+      margin-bottom: 2px;
+    }
+
+    .w-co2-val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #A7F3D0;
+    }
+
+    .w-co2-unit {
+      font-size: 11px;
+      opacity: .65;
+      margin-left: 2px;
+    }
+
+    .w-update {
+      font-size: 8px;
+      opacity: .65;
+      text-align: center;
+      margin-top: 2px;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -616,10 +653,8 @@
   <div class="header">
     <div>
       <h1>Gestion des gabarits d'affichage</h1>
-      <p>Choisissez et gérez les gabarits utilisés par les afficheurs</p>
     </div>
     <div style="display:flex; gap:12px; flex-wrap:wrap;">
-      <button class="btn btn-energy" id="topEnergyBtn">Voir page énergie</button>
       <button class="btn-add" id="addTemplateBtn">+ Nouveau gabarit</button>
     </div>
   </div>
@@ -634,8 +669,7 @@
       data-location="Administration"
       data-alert="Urgences / Rappels"
       data-status="Actif"
-      data-assigned=""
-      data-energy-page="oui">
+      data-assigned="">
       <div class="preview">
         <div class="mini-screen">
           <div class="mini-topbar">
@@ -647,7 +681,7 @@
             <div class="mini-panel mini-zone2">Annonces générales</div>
             <div class="mini-panel mini-zone3">
               <div class="mini-zone3-title">Prod. énergie</div>
-              <div class="mini-meter"><div class="mini-meter-fill"></div></div>
+              <div class="mini-meter"><div class="mini-meter-fill" style="width:45%"></div></div>
               <div class="mini-meter"><div class="mini-meter-fill" style="width:58%"></div></div>
             </div>
           </div>
@@ -681,8 +715,7 @@
       data-location="Bâtiment C"
       data-alert="Retards / Rappels"
       data-status="Actif"
-      data-assigned=""
-      data-energy-page="oui">
+      data-assigned="">
       <div class="preview">
         <div class="mini-screen">
           <div class="mini-topbar">
@@ -728,8 +761,7 @@
       data-location="Bâtiment énergie"
       data-alert="Suivi de la production"
       data-status="Actif"
-      data-assigned=""
-      data-energy-page="oui">
+      data-assigned="">
       <div class="preview">
         <div class="mini-screen">
           <div class="mini-topbar">
@@ -775,8 +807,7 @@
       data-location="Salle technique"
       data-alert="Suivi des traitements"
       data-status="Actif"
-      data-assigned=""
-      data-energy-page="oui">
+      data-assigned="">
       <div class="preview">
         <div class="mini-screen">
           <div class="mini-topbar">
@@ -826,7 +857,7 @@
       <div class="screen">
         <div class="topbar">
           <div id="siteName">LGT Joseph GAILLARD</div>
-          <div id="dateHeure">Nous sommes le Lundi 13 Novembre 2023. Il est 07h30</div>
+          <div id="dateHeure"> le Lundi 13 Novembre 2023. Il est 07h30</div>
         </div>
 
         <div class="layout">
@@ -947,7 +978,15 @@
     let currentCard = null;
     let cardBeingEdited = null;
     let cardBeingAssigned = null;
-    let energyInterval = null;
+    let widgetInterval = null;
+    let journalEol = [];
+    let journalPv = [];
+    let nbReleves = 0;
+
+    const XML_URL = "http://192.168.0.131/status.xml";
+    const REFRESH_MS = 2000;
+    const CO2_FACTOR = 0.75;
+    const MAX_REF = 500;
 
     function mettreAJourDateHeure() {
       const maintenant = new Date();
@@ -961,7 +1000,7 @@
       const heures = String(maintenant.getHours()).padStart(2, '0');
       const minutes = String(maintenant.getMinutes()).padStart(2, '0');
 
-      const texteComplet = `Nous sommes le ${jour} ${date} ${moisNom} ${annee}. Il est ${heures}h${minutes}`;
+      const texteComplet = ` ${jour} ${date} ${moisNom} ${annee}. Il est ${heures}h${minutes}`;
       const texteMini = `${jour} ${heures}h${minutes}`;
 
       document.getElementById('dateHeure').textContent = texteComplet;
@@ -970,93 +1009,121 @@
       });
     }
 
-    function genererValeursEnergie() {
-      const solaire = Math.floor(35 + Math.random() * 55);
-      const photovoltaïque = Math.floor(30 + Math.random() * 60);
-      const consommation = Math.floor(25 + Math.random() * 70);
-      const totalProd = solaire + photovoltaïque;
-      const bilan = totalProd - consommation;
-      return { solaire, photovoltaïque, consommation, totalProd, bilan };
+    function avg(arr) {
+      return arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
     }
 
-    function construireDashboardEnergie() {
+    function setGauge(id, val, max) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.width = Math.min((val / max) * 100, 100) + '%';
+    }
+
+    function construireWidgetEnergie() {
       zone3.innerHTML = `
-        <div class="energy-dashboard">
-          <div class="energy-title">Analyse de production</div>
-          <div class="energy-subtitle">Énergie solaire, photovoltaïque et consommation</div>
-
-          <div class="energy-values">
-            <div class="energy-item">
-              <div class="energy-label-row">
-                <span>Solaire</span>
-                <strong id="solaireValue">0 kWh</strong>
-              </div>
-              <div class="energy-bar"><div class="energy-fill fill-solaire" id="solaireBar"></div></div>
-            </div>
-
-            <div class="energy-item">
-              <div class="energy-label-row">
-                <span>Photovoltaïque</span>
-                <strong id="pvValue">0 kWh</strong>
-              </div>
-              <div class="energy-bar"><div class="energy-fill fill-pv" id="pvBar"></div></div>
-            </div>
-
-            <div class="energy-item">
-              <div class="energy-label-row">
-                <span>Consommation</span>
-                <strong id="consoValue">0 kWh</strong>
-              </div>
-              <div class="energy-bar"><div class="energy-fill fill-conso" id="consoBar"></div></div>
-            </div>
+        <div class="widget-zone3">
+          <div class="w-title">
+            <span class="w-dot" id="wDot"></span>
+            Production d'énergie renouvelable
           </div>
 
-          <div class="energy-analysis">
-            <div id="prodTotale">Production totale : 0 kWh</div>
-            <div id="bilanValue">Bilan énergétique : 0 kWh</div>
-            <div id="analysisText">Analyse : attente de données</div>
+          <div class="w-section">🌬 Éolienne — Site 1</div>
+          <div class="w-big" id="wEol">—<span class="unit">kWh</span></div>
+          <div class="w-gauge"><div class="w-gauge-fill fill-eol" id="wEolG" style="width:0%"></div></div>
+
+          <hr class="w-sep">
+
+          <div class="w-section">☀ Photovoltaïque — Site 2</div>
+          <div class="w-big" id="wPV">—<span class="unit">kWh</span></div>
+          <div class="w-gauge"><div class="w-gauge-fill fill-pv" id="wPVG" style="width:0%"></div></div>
+
+          <hr class="w-sep">
+
+          <div class="w-row"><span>⚡ Total</span><span class="val" id="wTotal">—</span></div>
+          <div class="w-row"><span>📊 Moy. jour</span><span class="val" id="wMoy">—</span></div>
+          <div class="w-row"><span>🔢 Relevés</span><span class="val" id="wReleves">0</span></div>
+
+          <hr class="w-sep">
+
+          <div class="w-co2">
+            <div class="w-co2-label">🌱 CO₂ économisé (base fioul)</div>
+            <div>
+              <span class="w-co2-val" id="wCO2">—</span>
+              <span class="w-co2-unit">kg</span>
+            </div>
+            <div style="font-size:8px;opacity:.5;margin-top:2px">750 g CO₂ / kWh évités</div>
           </div>
 
-          <div class="energy-foot" id="energyTime">Mise à jour : --</div>
+          <div class="w-update" id="wUpdate">En attente IPX800...</div>
         </div>
       `;
     }
 
-    function actualiserDashboardEnergie() {
-      const data = genererValeursEnergie();
-      const maintenant = new Date().toLocaleTimeString('fr-FR');
+    async function fetchWidgetEnergie() {
+      try {
+        const res = await fetch(XML_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      document.getElementById('solaireValue').textContent = `${data.solaire} kWh`;
-      document.getElementById('pvValue').textContent = `${data.photovoltaïque} kWh`;
-      document.getElementById('consoValue').textContent = `${data.consommation} kWh`;
+        const xmlText = await res.text();
+        const xml = new DOMParser().parseFromString(xmlText, "application/xml");
+        if (xml.querySelector("parsererror")) throw new Error("XML invalide");
 
-      document.getElementById('solaireBar').style.width = `${Math.min(data.solaire, 100)}%`;
-      document.getElementById('pvBar').style.width = `${Math.min(data.photovoltaïque, 100)}%`;
-      document.getElementById('consoBar').style.width = `${Math.min(data.consommation, 100)}%`;
+        const eol = parseFloat(xml.querySelector("analog1")?.textContent) || 0;
+        const pv = parseFloat(xml.querySelector("analog2")?.textContent) || 0;
+        const total = parseFloat((eol + pv).toFixed(2));
+        const co2 = parseFloat((total * CO2_FACTOR).toFixed(2));
 
-      document.getElementById('prodTotale').textContent = `Production totale : ${data.totalProd} kWh`;
-      document.getElementById('bilanValue').textContent = `Bilan énergétique : ${data.bilan} kWh`;
+        journalEol.push(eol);
+        journalPv.push(pv);
+        nbReleves++;
 
-      const analyse = data.bilan >= 0
-        ? 'Analyse : la production couvre actuellement la consommation.'
-        : 'Analyse : la consommation dépasse actuellement la production.';
+        const moy = parseFloat(avg([...journalEol, ...journalPv]).toFixed(2));
 
-      document.getElementById('analysisText').textContent = analyse;
-      document.getElementById('energyTime').textContent = `Mise à jour : ${maintenant}`;
-    }
+        const t = new Date().toLocaleTimeString('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
 
-    function lancerDashboardEnergie() {
-      construireDashboardEnergie();
-      actualiserDashboardEnergie();
-      stopDashboardEnergie();
-      energyInterval = setInterval(actualiserDashboardEnergie, 4000);
-    }
+        document.getElementById('wEol').innerHTML = `${eol}<span class="unit">kWh</span>`;
+        document.getElementById('wPV').innerHTML = `${pv}<span class="unit">kWh</span>`;
+        document.getElementById('wTotal').textContent = total + ' kWh';
+        document.getElementById('wMoy').textContent = moy + ' kWh';
+        document.getElementById('wReleves').textContent = nbReleves;
+        document.getElementById('wCO2').textContent = co2;
+        document.getElementById('wUpdate').textContent = 'Mis à jour : ' + t;
 
-    function stopDashboardEnergie() {
-      if (energyInterval) {
-        clearInterval(energyInterval);
-        energyInterval = null;
+        setGauge('wEolG', eol, MAX_REF);
+        setGauge('wPVG', pv, MAX_REF);
+
+        const dot = document.getElementById('wDot');
+        if (dot) dot.style.background = '#A7F3D0';
+
+      } catch (e) {
+        const dot = document.getElementById('wDot');
+        if (dot) dot.style.background = '#FCA5A5';
+
+        const update = document.getElementById('wUpdate');
+        if (update) update.textContent = '⚠ Erreur : ' + e.message;
       }
+    }
+
+    function stopWidgetEnergie() {
+      if (widgetInterval) {
+        clearInterval(widgetInterval);
+        widgetInterval = null;
+      }
+    }
+
+    function lancerWidgetEnergie() {
+      stopWidgetEnergie();
+      journalEol = [];
+      journalPv = [];
+      nbReleves = 0;
+
+      construireWidgetEnergie();
+      fetchWidgetEnergie();
+      widgetInterval = setInterval(fetchWidgetEnergie, REFRESH_MS);
     }
 
     function openTemplate(card) {
@@ -1069,8 +1136,7 @@
       document.getElementById('location').textContent = card.dataset.location;
       document.getElementById('alerteText').textContent = card.dataset.alert;
 
-      lancerDashboardEnergie();
-
+      lancerWidgetEnergie();
       modal.classList.add('active');
       mettreAJourDateHeure();
     }
@@ -1116,10 +1182,6 @@
       assignModal.classList.add('active');
     }
 
-    function openEnergyPage() {
-      window.open('energie.html', '_blank');
-    }
-
     function attachCardEvents(card) {
       const previewBtn = card.querySelector('.btn-preview');
       const editBtn = card.querySelector('.btn-edit');
@@ -1149,7 +1211,7 @@
         if (currentCard === card) {
           modal.classList.remove('active');
           currentCard = null;
-          stopDashboardEnergie();
+          stopWidgetEnergie();
         }
 
         if (cardBeingEdited === card) {
@@ -1177,7 +1239,6 @@
       card.dataset.alert = 'Nouvelle alerte rouge';
       card.dataset.status = 'Actif';
       card.dataset.assigned = '';
-      card.dataset.energyPage = 'oui';
 
       card.innerHTML = `
         <div class="preview">
@@ -1257,12 +1318,12 @@
       attachCardEvents(card);
       updateCardVisual(card);
     });
+
     addTemplateBtn.addEventListener('click', createNewCard);
-    document.getElementById('topEnergyBtn').addEventListener('click', openEnergyPage);
 
     closeModal.addEventListener('click', () => {
       modal.classList.remove('active');
-      stopDashboardEnergie();
+      stopWidgetEnergie();
     });
 
     closeEditModal.addEventListener('click', () => {
@@ -1276,7 +1337,7 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
-        stopDashboardEnergie();
+        stopWidgetEnergie();
       }
     });
 
@@ -1297,7 +1358,7 @@
         modal.classList.remove('active');
         editModal.classList.remove('active');
         assignModal.classList.remove('active');
-        stopDashboardEnergie();
+        stopWidgetEnergie();
       }
     });
 

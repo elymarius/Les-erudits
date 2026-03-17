@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affichage dynamique</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 20px;
+      width: 80%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+
+    #heure {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Projet Infoprod</h1>
+    <h2>Affichage dynamique</h2>
+    <div id="heure"></div>
+    <p>Bienvenue sur le système d'affichage.</p>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("heure").textContent = h + ":" + m + ":" + s;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
